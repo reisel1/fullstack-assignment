@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService } from './posts.service';
+import { Post, PostsService } from './posts.service';
 
 @Component({
   selector: 'app-root',
@@ -7,22 +7,31 @@ import { PostsService } from './posts.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  posts: any[] = [];
+  posts: Post[] = []
+  page: number = 1
+  pageSize: number = 10
+  isInfiniteScrollDisabled: boolean = false
+  isLoadingPosts: boolean = false
 
   constructor(private postsService: PostsService) { }
 
-  ngOnInit(): void {
-    this.loadPosts(1, 10) // Load page 1 with page size 10
+  ngOnInit() {
+    this.loadPosts(this.page, this.pageSize) // Load page 1 with page size 10
   }
 
-  loadPosts(page: number, pageSize: number): void {
-    this.postsService.getPosts(page, pageSize).subscribe(
-      data => {
-        this.posts = data
-      },
-      error => {
-        console.error('There was an error!', error)
+  loadPosts(page: number, pageSize: number) {
+    this.isLoadingPosts = true
+    this.postsService.getPosts(page, pageSize).subscribe(posts => {
+      this.posts = this.posts.concat(posts)
+      this.isLoadingPosts = false
+      if (posts.length === 0) {
+        this.isInfiniteScrollDisabled = true
       }
-    )
+    } )
+  }
+
+  nextPage() {
+    this.page++
+    this.loadPosts(this.page, this.pageSize)
   }
 }

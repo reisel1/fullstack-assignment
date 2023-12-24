@@ -21,23 +21,23 @@ app.get('/posts', (req: Request, res: Response) => {
         }
 
         try {
-            const posts = JSON.parse(data);
-            const paginatedPosts = paginate(posts, page, pageSize);
-            res.json(paginatedPosts);
+            const posts = JSON.parse(data)
+            const paginatedPosts = paginate(posts, page, pageSize)
+            res.json(paginatedPosts)
         } catch (parseError: unknown) {
-            const error = parseError as Error;
-            console.error('Error parsing JSON:', error.message);
-            return res.status(500).send('Error parsing JSON data');
+            const error = parseError as Error
+            console.error('Error parsing JSON:', error.message)
+            return res.status(500).send('Error parsing JSON data')
         }
-    });
-});
+    })
+})
 
 function paginate(array: any[], page: number, pageSize: number) {
-    const startIndex = (page - 1) * pageSize;
-    const endIndex = page * pageSize;
-    return array.slice(startIndex, endIndex);
+    const startIndex = (page - 1) * pageSize
+    const endIndex = page * pageSize
+    return array.slice(startIndex, endIndex)
 }
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+    console.log(`Server is running on port ${PORT}`)
+})
