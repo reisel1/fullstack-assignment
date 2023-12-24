@@ -1,0 +1,5 @@
+
+.vs/
+build/
+scripts-build/
+node_modules/

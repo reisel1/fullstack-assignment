@@ -1,8 +1,14 @@
 import express, { Request, Response } from 'express';
 import fs from 'fs';
+import cors from 'cors'; // Import CORS module
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(cors()); // Use CORS middleware to enable CORS
+
+// Optional: Enable CORS for specific origin
+// app.use(cors({ origin: 'http://localhost:4200' }));
 
 app.get('/posts', (req: Request, res: Response) => {
     const page = parseInt(req.query.page as string) || 1;
