@@ -9,14 +9,14 @@ import { Post, PostsService } from './posts.service';
 export class AppComponent implements OnInit {
   posts: Post[] = []
   page: number = 1
-  pageSize: number = 10
+  pageSize: number = 50
   isInfiniteScrollDisabled: boolean = false
   isLoadingPosts: boolean = false
 
   constructor(private postsService: PostsService) { }
 
   ngOnInit() {
-    this.loadPosts(this.page, this.pageSize) // Load page 1 with page size 10
+    this.loadPosts(this.page, this.pageSize)
   }
 
   loadPosts(page: number, pageSize: number) {
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       if (posts.length === 0) {
         this.isInfiniteScrollDisabled = true
       }
-    } )
+    })
   }
 
   nextPage() {

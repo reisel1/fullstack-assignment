@@ -9,8 +9,6 @@ const cors_1 = __importDefault(require("cors")); // Import CORS module
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
 app.use((0, cors_1.default)()); // Use CORS middleware to enable CORS
-// Optional: Enable CORS for specific origin
-// app.use(cors({ origin: 'http://localhost:4200' }));
 app.get('/posts', (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.pageSize) || 10;

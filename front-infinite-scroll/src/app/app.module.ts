@@ -7,6 +7,8 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { MatChipsModule } from '@angular/material/chips';
     InfiniteScrollModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
