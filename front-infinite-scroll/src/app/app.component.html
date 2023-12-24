@@ -1,12 +1,18 @@
+<h2>Posts</h2>
 <div class="scroll-container" infiniteScroll
   [infiniteScrollDisabled]="isInfiniteScrollDisabled" (scrolled)="nextPage()">
   <div class="post-container" *ngFor="let post of posts">
     <h3>{{ post.user_name }}</h3>
     <h3>{{ post.email }}</h3>
-    <h5>{{ post.created_at }}</h5>
+    <h5>{{ post.created_at}}</h5>
     <p>
     {{ post.content }}
     </p>
+    <div style="font-weight: bold;">Tags:</div>
+    <br/>
+    <mat-chip-list>
+      <mat-chip *ngFor="let tag of post.tags">{{tag}}</mat-chip>
+    </mat-chip-list>
   </div>
 </div>
 <mat-spinner diameter="50" *ngIf="isLoadingPosts" class="spinner-container"></mat-spinner>
